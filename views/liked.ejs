@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+  <div id="main">
+    <div id="left">
+      <div id="menu">
+       <a href="/"> <button>
+        <i class="ri-home-4-line"></i>
+        <h3>HOME</h3>
+      </button></a>
+        <a href="/search">
+        <button>         
+          <i class="ri-search-line"></i>
+          <h3>search</h3>       
+        </button>
+      </a>
+      </div>
+      <div id="libs">     
+       <div id="libs-head">
+        <i class="ri-play-list-fill"></i> 
+        <h1>playlists</h1>
+        <i id="add" class="ri-add-fill"></i>
+       </div>
+       <form id="fileform" action="/createplaylist" method="post">
+        <input type="text" name="name" placeholder="New Playlist Name">
+        <input type="text" name="poster" placeholder="poster" value="">
+        <input id="hidden" type="submit">
+      </form>
+    
+     <a href="/liked-songs"> <div  id="playlist-card">
+      <img src="data:image/jpeg;base64,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" alt="">
+      <h1> <%= currentuser.liked.length %> Liked Songs </h1>
+    </div></a>
+      <%  allplaylist.forEach((playlist)=>{  %>
+       
+        <% if(playlist.name == 'default'){ %>
+          <div style="display: none;" id="playlist-card">
+            <img src="<%= playlist.poster %>" alt="">
+            <!-- <h1><%= playlist.name %></h1> -->
+          </div>
+       <% }else{ %>
+        <div id="playlist-card">
+          <img src="<%= playlist.poster %>" alt="">
+          <h1><%= playlist.name %></h1>
+        </div>
+     <%  } %>
+
+        
+    <%  })   %>
+
+
+        
+
+
+
+
+      </div>
+      <div id="now-play">      
+        
+       
+      </div>
+    </div>
+    <div id="right">
+     <% currentuser.liked.forEach(song=>{ %>
+           
+      <div class="card" onclick="onclicked('<%=  song.fileName  %>','<%= song.title %>','<%= song.artist %>')" >
+        <div id="play-button">
+          <i class="ri-play-circle-fill"></i>
+        </div>
+        <img src="/poster/<%= song.poster %>" alt="">
+        <div id="text">
+         <a href="/like/<%=song._id%>"> <i onclick="liked()"  id="heart" class="ri-heart-line"></i></a>
+         <h5 id="likecount" ><%= song.likes.length %></h5>
+          <h5><b><%= song.title %></b></h5>
+          <p><%= song.artist %></p>          
+        </div>
+      </div>  
+   <%  }) %>
+ 
+      <div id="aud">
+        <div class="n-play">
+          <div class="top">
+          <div class="pfp">
+            <div class="playing">
+              <div class="greenline line-1"></div>
+              <div class="greenline line-2"></div>
+              <div class="greenline line-3"></div>
+              <div class="greenline line-4"></div>
+              <div class="greenline line-5"></div>
+            </div>
+          </div>
+          <div class="texts">
+          <p class="title-1">title</p>
+          <p class="title-2">artist</p>
+          </div>
+          </div>     
+       
+      </div>
+        <audio  src="/stream/b40fa7804c5189cd1a40952c6f2add9f10fcc745" controls ></audio>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js" integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+
+  function onclicked(filename,song,artist){
+    document.querySelector('audio').setAttribute('src', `/stream/${filename}`)
+    document.querySelector('audio').play()
+    
+    document.querySelector('.title-1').innerHTML =  song ;
+    document.querySelector('.title-2').innerHTML =  artist ;
+   
+  }
+
+
+
+  async function liked(event,songid){
+
+ 
+    event.target.className = "ri-heart-fill"
+  }
+  
+
+
+  document.querySelector('#add').addEventListener('click',()=>{
+    document.querySelector('#libs form input').style.display = 'block';
+    document.querySelector('#libs form input:nth-child(2)').style.display = 'block';
+  })
+
+ </script>
+</body>
+</html>
+

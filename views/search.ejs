@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/stylesheets/style2.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+  <div id="main">
+    <div id="left">
+      <div id="menu">
+        <a href="/">
+            <button>
+                <i class="ri-home-4-line"></i>
+                <h3>HOME</h3>
+              </button>
+        </a>
+        
+        <div id="st">
+            <input type="text">
+            <button onclick=" searchingSong() " >search</button>
+        </div>
+      </div>
+      <div id="libs">
+        
+
+      </div>
+    </div>
+    <div id="right">
+     
+ 
+      <div id="aud">
+        <audio style="z-index: 999;" src="/stream/b40fa7804c5189cd1a40952c6f2add9f10fcc745" controls ></audio>
+
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js" integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ <script>
+ async  function searchingSong(){  
+ var result = await axios.post('/search',{
+    search :  document.querySelector('input').value
+  })
+  var clutter = '';
+
+  result.data.songs.forEach(song => {
+    // console.log(song);
+    clutter+= `   <div class="card" onclick="onclicked('${song.fileName}')" >
+        <div id="play-button">
+          <i class="ri-play-circle-fill"></i>
+        </div>
+        <img src="/poster/${song.poster}" alt="">
+        <div id="text">
+          <h5><b>${song.title}</b></h5>
+          <p>${song.artist}</p>          
+        </div>
+      </div>   `
+  });
+
+  document.querySelector('#right').innerHTML += clutter
+
+}
+  
+
+
+  function onclicked(filename){
+    // console.log(fileName);
+    document.querySelector('audio').setAttribute('src', `/stream/${filename}`)
+    document.querySelector('audio').play()
+  }
+
+
+ </script>
+</body>
+</html>
